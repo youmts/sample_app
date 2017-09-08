@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.3'
+# Use bcrypt
+gem 'bcrypt', '3.1.11'
 # Use Bootstrap
 gem 'bootstrap-sass', '3.3.7'
 # Use Puma as the app server

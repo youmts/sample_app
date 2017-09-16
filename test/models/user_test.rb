@@ -1,5 +1,30 @@
 require 'test_helper'
 
+class UserClassMethodTest < ActiveSupport::TestCase
+  test "should get token" do
+    assert User.new_token
+  end
+  
+  test "shold make digest" do
+    assert User.digest("abc")
+  end
+  
+  test "two tokens are not equal" do
+    assert_not_equal User.new_token, User.new_token
+  end
+  
+  test "two digest from same token are not equal as string" do
+    token = User.new_token
+    assert_not_equal User.digest(token), User.digest(token)
+  end
+  
+  test "digest from a token is equal to token by BCrypt:Password==" do
+    token = User.new_token
+    digest = User.digest(token)
+    assert BCrypt::Password.new(digest).is_password?(token)
+  end
+end
+
 class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
@@ -71,5 +96,14 @@ class UserTest < ActiveSupport::TestCase
   test "password should have a minimum length" do
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
+  end
+  
+  test "should authenticate by remember_token" do
+    @user.remember
+    @user.authenticated?(@user.remember_token)
+  end
+  
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
   end
 end

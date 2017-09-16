@@ -5,7 +5,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:michael)
   end
   
-  test "login with invalid information" do
+  test "正しくない情報を入力してログインしようとする" do
     get login_path
     assert_template 'sessions/new'
     post login_path,
@@ -18,7 +18,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert.alert-danger', count: 0
   end
   
-  test "login with valid information followed by logout" do
+  test "正しい情報を入力してログインし、ログアウトする" do
     get login_path
     post login_path,
       params: { session: {email: @user.email, password: 'password' } }
@@ -38,12 +38,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@user), count: 0
   end
   
-  test "login with remembering" do
+  test "remember_meした情報でログインする" do
     log_in_as(@user, remember_me: '1')
     assert_equal cookies['remember_token'], assigns(:user).remember_token
   end
   
-  test " login without remembering" do
+  test "remember_meせずにログインする" do
     # クッキーを保存してログイン
     log_in_as(@user, remember_me: '1')
     delete logout_path

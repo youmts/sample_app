@@ -4,15 +4,17 @@ class SessionsHelperTest < ActionView::TestCase
   
   def setup
     @user = users(:michael)
-    remember(@user) # なぜrememberを呼び出せるの？
+    remember(@user)
   end
   
-  test "current_user returns right user when session is nil" do
+  test "session[:userid]がnilの状態でもremember_me機能を使用して
+        current_userが正しくユーザを返すこと" do
     assert_equal @user, current_user
     assert is_logged_in?
   end
   
-  test "current_user returns nil when remember digest is wrong" do
+  test "remember_meで保存したダイジェストが間違っている場合に、
+        current_userがnilを返すこと" do
     @user.update_attribute(:remember_digest, User.digest(User.new_token))
     assert_nil current_user
   end

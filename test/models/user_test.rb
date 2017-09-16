@@ -1,24 +1,25 @@
 require 'test_helper'
 
 class UserClassMethodTest < ActiveSupport::TestCase
-  test "should get token" do
+  test "新たなトークンが取得できること" do
     assert User.new_token
   end
   
-  test "shold make digest" do
+  test "ダイジェストを作成できること" do
     assert User.digest("abc")
   end
   
-  test "two tokens are not equal" do
+  test "トークンを二回取得しそれぞれが異なること" do
     assert_not_equal User.new_token, User.new_token
   end
   
-  test "two digest from same token are not equal as string" do
+  test "同じトークンから二回ダイジェストを作成しそれぞれが異なること" do
     token = User.new_token
     assert_not_equal User.digest(token), User.digest(token)
   end
   
-  test "digest from a token is equal to token by BCrypt:Password==" do
+  test "トークンから作成したダイジェストとトークンを
+        BCrypt:Password==で比較するとtrueが返ること" do
     token = User.new_token
     digest = User.digest(token)
     assert BCrypt::Password.new(digest).is_password?(token)
@@ -31,31 +32,31 @@ class UserTest < ActiveSupport::TestCase
                     password: "foobar", password_confirmation: "foobar")
   end
   
-  test "should be valid" do
+  test "validであること" do
     assert @user.valid?
   end
   
-  test "name should be present" do
+  test "nameは空でないこと" do
     @user.name = "         "
     assert_not @user.valid?
   end
   
-  test "email should be present" do
+  test "emailは空でないこと" do
     @user.email = "                 "
     assert_not @user.valid?
   end
   
-  test "name should not be too long" do
+  test "nameは長すぎてはいけない" do
     @user.name = "a" * 51
     assert_not @user.valid?
   end
   
-  test "email should not be too long" do
+  test "emailは長すぎてはいけない" do
     @user.email = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
   
-  test "email validation should accept valid addresses" do
+  test "emailは正しいアドレスを許容すること" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                           first.last@foo.jp alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
@@ -64,7 +65,7 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
-  test "email validataion should reject invalid addresses" do
+  test "emailは正しくないアドレスを拒否すること" do
     invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
                             foo@bar_baz.com foo@bar+baz.com foo@bar..com]
     
@@ -74,36 +75,36 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
-  test "email addresses should be unique" do
+  test "emailはユニークであること" do
     duplicate_user = @user.dup
     duplicate_user.email = @user.email.upcase
     @user.save
     assert_not duplicate_user.valid?
   end
   
-  test "email addresses should be saved as lower-case" do
+  test "emailは小文字で保存されていること" do
     mixed_case_email = "AaXdgA@ASxvgrD.CoM"
     @user.email = mixed_case_email
     @user.save
     assert_equal mixed_case_email.downcase, @user.reload.email
   end
   
-  test "password should be present (nonblank)" do
+  test "passwordは空でないこと" do
     @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
   
-  test "password should have a minimum length" do
+  test "passwordは短すぎないこと" do
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
   
-  test "should authenticate by remember_token" do
+  test "remember_tokenで認証できること" do
     @user.remember
     @user.authenticated?(@user.remember_token)
   end
   
-  test "authenticated? should return false for a user with nil digest" do
+  test "ダイジェストが保存されていないとき、authenticated?はfalseを返すこと" do
     assert_not @user.authenticated?('')
   end
 end

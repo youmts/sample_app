@@ -3,10 +3,11 @@ require 'test_helper'
 class UsersSignupTest < ActionDispatch::IntegrationTest
   
   test "正しくない情報を入力してサインアップしようとする" do
-    get signup_path
-    assert_select 'form[action=?]', "/signup"
+    get new_user_path
+    assert_select 'form[action=?]', "/users"
+    assert_select 'form[method=?]', "post"
     assert_no_difference 'User.count' do
-      post signup_path, params: { user: { name: "",
+      post users_path, params: { user: { name: "",
                                         email: "user@invalid",
                                         password: "foo",
                                         password_confirmation: "bar" } }
@@ -18,9 +19,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   end
   
   test "正しい情報を入力してサインアップする" do
-    get signup_path
+    get new_user_path
     assert_difference 'User.count', 1 do
-      post signup_path, params: { user: {name: "Example User",
+      post users_path, params: { user: {name: "Example User",
                                         email: "user@example.com",
                                         password: "password",
                                         password_confirmation: "password" } }

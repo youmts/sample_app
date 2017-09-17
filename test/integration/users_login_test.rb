@@ -28,6 +28,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
+    assert_select "a[href=?]", users_path
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
@@ -36,6 +37,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path, count: 0
     assert_select "a[href=?]", user_path(@user), count: 0
+    assert_select "a[href=?]", users_path, count: 0
   end
   
   test "remember_meした情報でログインする" do

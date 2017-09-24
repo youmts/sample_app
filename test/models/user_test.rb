@@ -101,10 +101,10 @@ class UserTest < ActiveSupport::TestCase
   
   test "remember_tokenで認証できること" do
     @user.remember
-    @user.authenticated?(@user.remember_token)
+    @user.authenticated?(:remember, @user.remember_token)
   end
   
   test "ダイジェストが保存されていないとき、authenticated?はfalseを返すこと" do
-    assert_not @user.authenticated?('')
+    assert_not @user.authenticated?(:remember, '')
   end
 end

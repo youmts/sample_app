@@ -22,3 +22,6 @@
 
 # Ignore Spring files.
 /spring/*.pid
+
+# Ignore bundle gem files
+/vendor/bundle/*

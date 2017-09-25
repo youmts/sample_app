@@ -40,6 +40,9 @@ group :development, :test do
   gem 'sqlite3', '1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '9.0.6', platform: :mri
+  # For Debug in RubyMine
+  gem 'ruby-debug-ide', '0.6.1.beta9'
+  gem 'debase'
 end
 
 group :development do

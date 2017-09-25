@@ -25,3 +25,6 @@
 
 # Ignore bundle gem files
 /vendor/bundle/*
+
+# Ignore IDE files
+/.idea/*

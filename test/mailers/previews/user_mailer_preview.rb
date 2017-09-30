@@ -2,7 +2,7 @@
 class UserMailerPreview < ActionMailer::Preview
 
   # Preview this email at
-  # https://rails-tutorial-anata0814.c9users.io/rails/mailers/user_mailer/account_activation
+  # https://localhost:3000/rails/mailers/user_mailer/account_activation
   def account_activation
     user = User.first
     user.activation_token = User.new_token
@@ -10,9 +10,11 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   # Preview this email at
-  # https://rails-tutorial-anata0814.c9users.io/rails/mailers/user_mailer/password_reset
+  # https://localhost:3000/rails/mailers/user_mailer/password_reset
   def password_reset
-    UserMailer.password_reset
+    user = User.first
+    user.reset_token = User.new_token
+    UserMailer.password_reset(user)
   end
 
 end

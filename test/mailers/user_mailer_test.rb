@@ -14,6 +14,18 @@ class UserMailerTest < ActionMailer::TestCase
     assert_match CGI.escape(user.email), decoded_mail_body
   end
 
+  test "password_reset" do
+    user = users(:michael)
+    user.reset_token = User.new_token
+    mail = UserMailer.password_reset(user)
+    assert_equal "パスワード再設定", mail.subject
+    assert_equal [user.email], mail.to
+    assert_equal ["noreply@example.com"], mail.from
+    decoded_mail_body = decode_mail_body(mail.body.encoded)
+    assert_match user.reset_token, decoded_mail_body
+    assert_match CGI.escape(user.email), decoded_mail_body
+  end
+
   private
     def decode_mail_body(body)
       lines = body.split(/\r\n/)

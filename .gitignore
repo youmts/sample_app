@@ -31,3 +31,6 @@
 
 # Ignore .DS_Store
 .DS_Store
+
+# Ignore upload
+/public/uploads/*

@@ -6,6 +6,10 @@ gem 'rails', '5.0.3'
 gem 'bcrypt', '3.1.11'
 # Use fakser
 gem 'faker', '1.7.3'
+# Use CarrierWave
+gem 'carrierwave', '1.1.0'
+gem 'mini_magick', '4.7.0'
+gem 'fog', '1.40.0'
 # Use Bootstrap
 gem 'bootstrap-sass', '3.3.7'
 # Use will_paginate

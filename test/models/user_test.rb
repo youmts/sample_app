@@ -107,4 +107,12 @@ class UserTest < ActiveSupport::TestCase
   test "ダイジェストが保存されていないとき、authenticated?はfalseを返すこと" do
     assert_not @user.authenticated?(:remember, '')
   end
+
+  test "関連付けられたmicropostが削除されること" do
+    @user.save
+    @user.microposts.create(content: "Lorem ipsum")
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
 end

@@ -360,7 +360,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    will_paginate (3.1.5)
+    will_paginate (3.1.6)
     xml-simple (1.1.5)
 
 PLATFORMS
@@ -396,7 +396,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (= 3.2.0)
   web-console (= 3.5.1)
-  will_paginate (= 3.1.5)
+  will_paginate (= 3.1.6)
 
 BUNDLED WITH
    1.15.4

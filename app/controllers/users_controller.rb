@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     redirect_to root_url unless @user.activated?
     @microposts = @user.microposts.paginate(page: params[:page])
   end
-  
+
   def new
     @user = User.new
   end
@@ -51,8 +51,7 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                  :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
     
     # beforeフィルター

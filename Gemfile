@@ -47,6 +47,9 @@ group :development, :test do
   # For Debug in RubyMine
   gem 'ruby-debug-ide', '0.6.1.beta9'
   gem 'debase'
+  # Hirb
+  gem 'hirb'
+  gem 'hirb-unicode'
 end
 
 group :development do

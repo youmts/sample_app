@@ -52,4 +52,20 @@ class FollowingTest < ActionDispatch::IntegrationTest
       delete relationship_path(relationship), xhr: true
     end
   end
+
+  test "Homeの統計情報が正しく表示されている" do
+    get root_path
+    assert_select 'strong#following', @user.following.count.to_s
+    assert_select 'strong#followers', @user.followers.count.to_s
+    get user_path(@user)
+    assert_select 'strong#following', @user.following.count.to_s
+    assert_select 'strong#followers', @user.followers.count.to_s
+  end
+
+  test "Homeのfeedが正しく表示されている" do
+    get root_path
+    @user.feed.paginate(page: 1).each do |micropost|
+      assert_match CGI.escapeHTML(micropost.content), response.body
+    end
+  end
 end

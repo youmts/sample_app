@@ -261,7 +261,7 @@ GEM
     mini_magick (4.7.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
-    minitest-reporters (1.1.14)
+    minitest-reporters (1.1.18)
       ansi
       builder
       minitest (>= 5.0)
@@ -321,7 +321,7 @@ GEM
       trollop (~> 2.1)
     ruby-debug-ide (0.6.1.beta9)
       rake (>= 0.8.1)
-    ruby-progressbar (1.8.1)
+    ruby-progressbar (1.9.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -392,7 +392,7 @@ DEPENDENCIES
   jquery-rails (= 4.3.1)
   listen (= 3.0.8)
   mini_magick (= 4.7.0)
-  minitest-reporters (= 1.1.14)
+  minitest-reporters (= 1.1.18)
   pg (= 0.18.4)
   puma (= 3.9.1)
   rails (= 5.1.4)

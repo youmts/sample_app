@@ -7,8 +7,6 @@ gem 'haml-rails'
 gem 'erb2haml'
 # Use bcrypt
 gem 'bcrypt', '3.1.11'
-# Use fakser
-gem 'faker', '1.7.3'
 # Use CarrierWave
 gem 'carrierwave', '1.1.0'
 gem 'mini_magick', '4.7.0'
@@ -53,6 +51,9 @@ group :development, :test do
   # Hirb
   gem 'hirb'
   gem 'hirb-unicode'
+  # rspec
+  gem 'rspec-rails', '~>3.7.0'
+  gem 'factory_bot', '~>4.8.0'
 end
 
 group :development do
@@ -69,6 +70,12 @@ group :test do
   gem 'minitest-reporters',       '1.1.18'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
+
+  gem 'faker', '~>1.8.0'
+  gem 'capybara', '~>2.15.0'
+  gem 'database_cleaner', '~>1.6.0'
+  gem 'launchy', '~>2.4.0'
+  gem 'selenium-webdriver', '~>3.7.0'
 end
 
 group :production do

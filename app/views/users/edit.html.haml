@@ -1,0 +1,9 @@
+- provide(:title, "Edit user")
+%h1 プロフィール編集
+.row
+  .col-md-6.col-md-offset-3
+    - provide(:button_text, "変更を保存する")
+    = render 'form'
+    .gravatar_edit
+      = gravatar_for @user
+      %a{:href => "http://gravatar.com/emails", :rel => "noopener", :target => "_blank"} 変更

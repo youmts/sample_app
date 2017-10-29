@@ -1,0 +1,14 @@
+= form_for(@micropost) do |f|
+  = render 'shared/error_messages', object: f.object
+  .field
+    = f.text_area :content, placeholder: "Compose new micropost..."
+  = f.submit "Post", class: "btn btn-primary"
+  %span.picture
+    = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+:javascript
+  $('#micropost_picture').bind('change', function () {
+      var size_in_megabyte = this.files[0].size/1024/1024;
+      if (size_in_megabyte > 5) {
+          alert('&#x6700;&#x5927;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x306F;5MB&#x3067;&#x3059;&#x3002;&#x3082;&#x3063;&#x3068;&#x5C0F;&#x3055;&#x3044;&#x30B5;&#x30A4;&#x30BA;&#x306B;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;');
+      }
+  });

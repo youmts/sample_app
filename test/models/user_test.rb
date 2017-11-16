@@ -19,7 +19,7 @@ class UserClassMethodTest < ActiveSupport::TestCase
   end
   
   test "トークンから作成したダイジェストとトークンを
-        BCrypt:Password==で比較するとtrueが返ること" do
+        BCrypt::Passwordのis_password?で比較するとtrueが返ること" do
     token = User.new_token
     digest = User.digest(token)
     assert BCrypt::Password.new(digest).is_password?(token)

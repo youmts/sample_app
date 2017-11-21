@@ -54,6 +54,8 @@ group :development, :test do
   # rspec
   gem 'rspec-rails', '~>3.7.0'
   gem 'factory_bot_rails', '~>4.8.0'
+  gem 'guard-rspec', '~>4.7.0'
+  gem 'spring-commands-rspec', '~>1.0.0'
 end
 
 group :development do
